@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Print Asset Details</title>
+</head>
+<body>
+    <center>
+        {% if asset_unique_identifier %}
+            <label>Scan If Out Of Service</label>
+            <br>
+            <br>
+            <div>
+                <img id='barcode'
+                     src="https://api.qrserver.com/v1/create-qr-code/?data=www.datapack.co{{ url_for('report.report', unique_identifier=asset_unique_identifier)}}&amp;size=100x100"
+                     alt=""
+                     title="QR-Code"
+                     width="100"
+                     height="100" />
+            </div>
+            <br>
+            <label>Thank You!</label>
+        {% endif %}
+    </center>
+</body>
+</html>

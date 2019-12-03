@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Quick Report</title>
+</head>
+<body>
+    <form action="{{ url_for('/.logout') }}" method="POST">
+        <center>
+            <button class="btn btn-primary" >Logout</button>
+        </center>
+    </form>
+    <form action="{{ url_for('assets.create_asset') }}" method="GET">
+        <center>
+            <button class>Create</button>
+        </center>
+    </form>
+    <ul class="list-group list-group-flush">
+        {% if assets %}
+            {% for asset in assets %}
+                <center>
+                    <table>
+                        <tr>
+                            <td>
+                                <li class="list-group-item">
+                                    <p>ID: {{ asset.id }}</p>
+                                    <p>Unique Identifier: {{ asset.uniqueIdentifier }}</p>
+                                    <p>Building: {{ asset.building }}</p>
+                                    <p>Room Number: {{ asset.roomNumber }}</p>
+                                    <p>Appliance: {{ asset.appliance }}</p>
+                                    <p>Service Required: {{ asset.serviceRequired }}</p>
+                                    <p>User ID: {{ asset.userID }}</p>
+                                    <form action="{{ url_for('assets.specific_asset', asset_id=asset.id) }}" method="GET">
+                                        <button class="btn btn-primary">Details</button>
+                                    </form>
+                                    <form action="{{ url_for('assets.edit_asset', asset_id=asset.id) }}" method="GET">
+                                        <button class="btn btn-primary">Edit</button>
+                                    </form>
+                                    <form action="{{ url_for('assets.printable_view', asset_id=asset.id) }}" method="GET">
+                                        <button class="btn btn-primary">Printable View</button>
+                                    </form>
+                                    <form action="{{ url_for('assets.remove_asset', asset_id=asset.id) }}" method="POST">
+                                        <button class="btn btn-primary">Remove</button>
+                                    </form>
+                                </li>
+                            </td>
+                       </tr>
+                    </table>
+                </center>
+            {%endfor%}
+        {% else %}
+            <center>
+                <label>No Assets</label>
+            </center>
+        {% endif %}
+    </ul>
+</body>

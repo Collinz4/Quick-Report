@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Specific Asset</title>
+</head>
+<body>
+    <center>
+        {% if asset %}
+            <label>ID: {{ asset.id }}</label><br>
+            <label>Unique Identifier: {{ asset.uniqueIdentifier }}</label><br>
+            <label>Building: {{ asset.building }}</label><br>
+            <label>Room Number: {{ asset.roomNumber }}</label><br>
+            <label>Appliance: {{ asset.appliance }}</label><br>
+            <label>Service Required: {{ asset.serviceRequired }}</label><br>
+            <label>User ID: {{ asset.userID }}</label><br>
+            <div>
+                <img id='barcode'
+                     src="https://api.qrserver.com/v1/create-qr-code/?data=www.datapack.co{{ url_for('report.report', unique_identifier=asset.uniqueIdentifier)}}&amp;size=100x100"
+                     alt=""
+                     title="QR-Code"
+                     width="100"
+                     height="100" />
+            </div>
+        {% else %}
+            <label>No Asset</label>
+        {% endif %}
+    </center>
+</body>
+</html>

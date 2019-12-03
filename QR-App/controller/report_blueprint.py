@@ -1,4 +1,4 @@
-from flask import Blueprint, request
+from flask import Blueprint, request, render_template
 from service import report_service
 
 
@@ -11,7 +11,7 @@ def report(unique_identifier: str):
         success: bool = report_service.report_asset_for_maintenance(unique_identifier)
         if success:
             # return success page
-            return '200'
+            return render_template('successful_report.html')
         else:
             # return failed page because asset was not found
-            return '404'
+            return render_template('report_failed.html')

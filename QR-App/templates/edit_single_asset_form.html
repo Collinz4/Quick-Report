@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Asset</title>
+</head>
+<body>
+    <center>
+        {% if asset %}
+            <form action="{{ url_for('assets.edit_asset', asset_id=asset.id) }}" method="POST">
+                <label>ID: {{ asset.id }}</label>
+                <br>
+                <label>Appliance: </label>
+                <input type="text" class="form-control" name="appliance" id="appliance" value="{{ asset.appliance }}">
+                <br>
+                <label>Building: </label>
+                <input type="text" class="form-control" name="building" id="building" value="{{ asset.building }}">
+                <br>
+                <label>Room Number: </label>
+                <input type="text" class="form-control" name="roomNumber" id="roomNumber" value="{{ asset.roomNumber }}">
+                <br>
+                <label>Service Required: </label>
+                <input type="text" class="form-control" name="serviceRequired" id="serviceRequired" value="{{ asset.serviceRequired }}">
+                <br>
+                <button class="btn btn-primary">Update</button>
+            </form>
+        {% else %}
+            <label>No Asset</label>
+        {% endif %}
+    </center>
+</body>
+</html>
