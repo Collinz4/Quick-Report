@@ -2,7 +2,7 @@
 A simple QR code reporting tool that doesn't require sign on for reporters.
 
 # Architecture
-The application uses a variety of layers to allocate responsibilites to function calls. To keep responsibilities enforced layers can only call the layer on the same or one level below itself.
+The application uses a variety of layers to allocate responsibilites to function calls. To keep responsibilities enforced, layers can only call the layer on the same or one level below itself. One exception to this rule is that models can be used to tranfer data to whichever layer requires it. For example: the controller can create an Asset object and pass it down to the service layer. Such action essentially uses the model as a Data Transfer Object (DTO).
 
 ## Controller (aka Flask blueprints)
 Handles routing and basic data parsing from the URL request. Once the data has been extracted a service layer call may be done to handle the request further (such as getting information from the database). This layer is responsible for also rendering the correct HTML/Jinja2 template and returning a proper reponse code.
